@@ -31,11 +31,38 @@ Repo ini masih di tahap awal. Kerangka aplikasi dan tema sudah berdiri, sedangka
 | Struktur modul, bottom navigation 5 tab, dan drawer | Selesai |
 | Tema selaras web (warna brand, surface hangat, border earthy, Material 3) | Selesai |
 | Halaman tiap modul | Placeholder: nama modul, PIC, dan ringkasan modul |
-| Integrasi Django REST Framework | Belum. Endpoint dan model masih disiapkan di sisi web |
-| Autentikasi, formulir, dan unggah foto | Belum |
+| Endpoint Django REST Framework | Sudah berjalan di repo web (`/api/...`, token auth, 26 tes lulus), belum di-deploy ke PWS |
+| Autentikasi, formulir, dan unggah foto di aplikasi | Belum. Halaman login/register dan pemanggilan API menyusul |
 | Rilis APK | Belum, menunggu pipeline Bitrise |
 
 Artinya, README ini menuliskan **modul dan perilaku yang dituju**, bukan fitur yang sudah jadi. Tiap bagian yang belum berjalan diberi keterangan.
+
+---
+
+## Alur integrasi: Flutter ↔ DRF ↔ PWS
+
+Aplikasi mobile tidak punya database sendiri. Semua data dibaca dan ditulis lewat API Django REST Framework di situs PWS, dan aturan bisnisnya tetap di server.
+
+| Langkah | Yang terjadi |
+| --- | --- |
+| 1. Login | `POST /api/auth/login/` mengirim username dan password, server membalas `token` |
+| 2. Simpan token | Token disimpan di penyimpanan aman perangkat, bukan di kode |
+| 3. Minta data | Setiap permintaan mengirim header `Authorization: Token <token>` |
+| 4. Baca JSON | Respons `snake_case` diubah ke model Dart, lalu ditampilkan di layar modul |
+| 5. Tulis data | Formulir mengirim `POST`/`PATCH`/`DELETE`, server memvalidasi, aplikasi memakai hasilnya |
+
+Endpoint yang tersedia di bawah `/api/`:
+
+| Grup | Endpoint | Akses |
+| --- | --- | --- |
+| Auth & profil | `auth/register/`, `auth/login/`, `auth/logout/`, `auth/me/` | publik untuk daftar dan login |
+| Plant Library | `plants/`, `plants/<id>/`, `plants/recommendations/?patch=<id>` | baca publik, tulis admin |
+| My EcoPatch | `ecopatches/`, `ecopatches/<id>/plants/`, `patch-plants/<id>/` | token |
+| Smart Care | `care-tasks/`, `care-tasks/<id>/complete/`, `care-tasks/<id>/undo/`, `weather/` | token |
+| Garden Journal | `journals/`, `journals/books/`, `journals/<id>/photo/` | token |
+| Seed Exchange | `seeds/`, `seeds/<id>/book/`, `accept/`, `complete/`, `reopen/`, `cancel/` | baca publik, aksi token |
+
+Respons galat mengikuti pola DRF: `400` untuk validasi, `401` tanpa token, `403` bukan admin, `404` untuk data milik orang lain. Halaman daftar memakai pagination (`count`, `next`, `previous`, `results`).
 
 ---
 
