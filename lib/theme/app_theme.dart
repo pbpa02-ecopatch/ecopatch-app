@@ -110,7 +110,7 @@ class AppTheme {
         titleTextStyle: heading(fontSize: 22),
         iconTheme: const IconThemeData(color: AppColors.brand600, size: 24),
       ),
-      cardTheme: CardThemeData(
+      cardTheme: CardTheme(
         color: AppColors.surface200,
         surfaceTintColor: Colors.transparent,
         elevation: 0,

@@ -407,10 +407,6 @@ ecopatch-mobile/
 
 Setiap modul punya folder sendiri di bawah `lib/`, mengikuti nama modul di web. Jadi satu modul bisa dikerjakan satu orang tanpa menyentuh folder modul lain.
 
-**Branch utama:** `main`
-
-**Branch modul:** mengikuti pola `feature/<nama-modul>`, sama seperti repo web.
-
 ---
 
 <a id="tautan-desain--rilis"></a>
