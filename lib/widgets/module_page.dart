@@ -25,19 +25,43 @@ class ModulePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: 64,
-                height: 64,
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  color: AppColors.brand300,
-                  shape: BoxShape.circle,
-                ),
-                child: ModuleIcon(module, size: 34),
+              Row(
+                children: [
+                  Container(
+                    width: 56,
+                    height: 56,
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      color: AppColors.brand300,
+                      shape: BoxShape.circle,
+                    ),
+                    child: ModuleIcon(module, size: 30),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          module.label,
+                          style: AppTheme.heading(fontSize: 22),
+                        ),
+                        Text(
+                          'EcoPatch',
+                          style: AppTheme.body(
+                            fontSize: 12.5,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.brand600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 18),
-              Text(module.heading, style: AppTheme.heading(fontSize: 26)),
-              const SizedBox(height: 10),
+              Text(module.heading, style: AppTheme.heading(fontSize: 24)),
+              const SizedBox(height: 8),
               Text(
                 module.description,
                 style: AppTheme.body(color: AppColors.inkMuted),

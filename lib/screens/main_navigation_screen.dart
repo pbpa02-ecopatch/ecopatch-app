@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:ecopatch_app/theme/app_colors.dart';
 import 'package:ecopatch_app/theme/app_icons.dart';
-import 'package:ecopatch_app/widgets/left_drawer.dart';
+import 'package:ecopatch_app/theme/app_theme.dart';
 import 'package:ecopatch_app/widgets/module_icon.dart';
 import 'package:ecopatch_app/plant_library/screens/plant_library_page.dart';
 import 'package:ecopatch_app/my_ecopatch/screens/my_ecopatch_page.dart';
@@ -39,33 +40,49 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: LeftDrawer(currentIndex: _currentIndex),
-      appBar: AppBar(
-        title: Text(_modules[_currentIndex].label),
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(1),
-          child: Divider(height: 1),
+      backgroundColor: AppColors.surface100,
+      body: SafeArea(
+        bottom: false,
+        child: IndexedStack(
+          index: _currentIndex,
+          children: _pages,
         ),
       ),
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _pages,
-      ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _currentIndex,
-        onDestinationSelected: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        destinations: [
-          for (final module in _modules)
-            NavigationDestination(
-              icon: ModuleIcon(module, size: 24),
-              selectedIcon: ModuleIcon(module, size: 26),
-              label: module.shortLabel,
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppColors.surface200,
+              borderRadius: BorderRadius.circular(32),
+              border: Border.all(color: AppColors.border, width: 1.2),
+              boxShadow: AppTheme.cardShadow,
             ),
-        ],
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(32),
+              child: NavigationBar(
+                selectedIndex: _currentIndex,
+                backgroundColor: AppColors.surface200,
+                elevation: 0,
+                height: 68,
+                onDestinationSelected: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                destinations: [
+                  for (final module in _modules)
+                    NavigationDestination(
+                      icon: ModuleIcon(module, size: 22),
+                      selectedIcon: ModuleIcon(module, size: 24),
+                      label: module.shortLabel,
+                    ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
