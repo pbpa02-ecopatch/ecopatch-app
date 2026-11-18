@@ -53,26 +53,43 @@ class ModulePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'ENDPOINT',
+                'ENDPOINT DJANGO REST FRAMEWORK',
                 style: AppTheme.body(
                   fontSize: 11,
                   fontWeight: FontWeight.w700,
                   color: AppColors.inkMuted,
                 ).copyWith(letterSpacing: 0.6),
               ),
-              const SizedBox(height: 8),
-              Text(
-                module.endpoint,
-                style: AppTheme.body(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.brand600,
+              const SizedBox(height: 12),
+              ...module.endpoints.map(
+                (ep) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        Icons.api,
+                        size: 16,
+                        color: AppColors.brand600,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          ep,
+                          style: AppTheme.body(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.ink,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 6),
               Text(
-                'Halaman ini masih kerangka. Daftar, formulir, dan unggah foto menyusul; '
-                'datanya dibaca dari API Django REST Framework.',
+                'Endpoint di atas siap dihubungkan dengan aplikasi mobile melalui Django REST Framework.',
                 style: AppTheme.body(fontSize: 12.5, color: AppColors.inkMuted),
               ),
             ],

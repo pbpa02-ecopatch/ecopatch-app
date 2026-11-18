@@ -59,8 +59,8 @@ Endpoint yang tersedia di bawah `/api/`:
 | Auth & profil | `auth/register/`, `auth/login/`, `auth/logout/`, `auth/me/` | publik untuk daftar dan login |
 | Plant Library | `plants/`, `plants/<id>/`, `plants/recommendations/?patch=<id>` | baca publik, tulis admin |
 | My EcoPatch | `ecopatches/`, `ecopatches/<id>/plants/`, `patch-plants/<id>/` | token |
-| Smart Care | `care-tasks/`, `care-tasks/<id>/complete/`, `care-tasks/<id>/undo/`, `weather/` | token |
-| Garden Journal | `journals/`, `journals/books/`, `journals/<id>/photo/` | token |
+| Smart Care | `smart-care/api/care-tasks/`, `care-tasks/<id>/complete/`, `weather/` | token / session |
+| Garden Journal | `journal/api/`, `journal/api/books/`, `journal/api/<id>/` | token / session |
 | Seed Exchange | `seeds/`, `seeds/<id>/book/`, `accept/`, `complete/`, `reopen/`, `cancel/` | baca publik, aksi token |
 
 Respons galat mengikuti pola DRF: `400` untuk validasi, `401` tanpa token, `403` bukan admin, `404` untuk data milik orang lain. Halaman daftar memakai pagination (`count`, `next`, `previous`, `results`).
