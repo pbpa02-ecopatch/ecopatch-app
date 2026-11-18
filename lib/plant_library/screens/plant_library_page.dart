@@ -20,7 +20,7 @@ class PlantLibraryPage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: AppColors.brandMint.withOpacity(0.35),
+                  color: AppColors.brandMint.withValues(alpha: 0.35),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
