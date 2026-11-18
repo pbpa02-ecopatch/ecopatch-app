@@ -29,8 +29,9 @@ Repo ini masih di tahap awal. Kerangka aplikasi dan tema sudah berdiri, sedangka
 | Bagian | Status |
 | --- | --- |
 | Struktur modul, bottom navigation 5 tab, dan drawer | Selesai |
-| Tema selaras web (warna brand, surface hangat, border earthy, Material 3) | Selesai |
-| Halaman tiap modul | Placeholder: nama modul, PIC, dan ringkasan modul |
+| Tema selaras web (warna, tipografi Baloo 2 + Plus Jakarta Sans, kartu dan pil) | Selesai |
+| Ikon tiap modul dan logo | Disalin dari repo web, bukan ikon Material bawaan |
+| Halaman tiap modul | Placeholder: judul, ringkasan modul, dan endpoint terkait |
 | Endpoint Django REST Framework | Sudah berjalan di repo web (`/api/...`, token auth, 26 tes lulus), belum di-deploy ke PWS |
 | Autentikasi, formulir, dan unggah foto di aplikasi | Belum. Halaman login/register dan pemanggilan API menyusul |
 | Rilis APK | Belum, menunggu pipeline Bitrise |
@@ -261,7 +262,7 @@ Guest tidak bisa mengubah atau menghapus data milik pengguna lain, dan tombol ya
 | --- | --- |
 | Bottom navigation | Lima modul dalam lima tab: Library, My EcoPatch, Smart Care, Journal, Exchange. Perpindahan tab memakai `IndexedStack`, jadi posisi daftar tidak hilang saat berpindah |
 | Drawer | Menu yang sama bisa dibuka dari kiri atas, berguna saat layar lebar atau saat tab bawah sedang disembunyikan |
-| Tampilan | Material 3 dengan token warna yang sama seperti CSS web: hijau brand, latar krem hangat, kartu putih, border earthy |
+| Tampilan | Design system web dipakai ulang: token warna `:root` di CSS, judul Baloo 2, teks Plus Jakarta Sans, kartu putih bergaris earthy, dan ikon modul dari repo web |
 | Kartu tanaman | Dibuka jadi halaman detail, dan tombol tambah ada di kartu maupun di detail |
 | Konfirmasi hapus | Selalu lewat dialog konfirmasi, bukan langsung menghapus |
 | Data dari server | Setelah integrasi API: tarik untuk menyegarkan, indikator memuat, dan pesan galat yang bisa dicoba ulang |
@@ -351,7 +352,7 @@ erDiagram
 | Lapisan | Pilihan |
 | --- | --- |
 | Framework | Flutter 3.47 (Dart 3) |
-| UI | Material 3, token warna dari CSS web di `lib/theme/app_colors.dart` |
+| UI | Material 3 dengan design system web: token warna dan tipografi di `lib/theme/`, ikon SVG di `assets/icons/` |
 | Navigasi | Bottom navigation 5 tab, drawer, dan `IndexedStack` |
 | Backend | Django REST Framework dari EcoPatch web. Aplikasi hanya membaca dan mengirim JSON, aturan bisnis tetap di server |
 | Autentikasi | Sesi dan token dari backend, termasuk Login with Google yang sudah ada di web |
@@ -389,13 +390,16 @@ ecopatch-mobile/
 ├── lib/
 │   ├── main.dart                 # entry point dan tema aplikasi
 │   ├── screens/                  # shell navigasi: bottom navigation 5 tab
-│   ├── widgets/                  # komponen bersama, misalnya drawer
-│   ├── theme/                    # token warna selaras CSS web
+│   ├── widgets/                  # komponen bersama: drawer, ikon modul, halaman modul
+│   ├── theme/                    # token warna, tipografi, dan daftar modul dari CSS web
 │   ├── plant_library/screens/    # Plant Library & Recommendation
 │   ├── my_ecopatch/screens/      # My EcoPatch
 │   ├── smart_care/screens/       # Smart Care
 │   ├── garden_journal/screens/   # Garden Journal
 │   └── seed_exchange/screens/    # Seed Exchange
+├── assets/
+│   ├── icons/                    # ikon modul dari templates/header.html repo web
+│   └── images/                   # logo EcoPatch dari static/img/logo.svg
 ├── test/                         # widget test
 ├── android/ ios/ web/ windows/ linux/ macos/   # target platform Flutter
 └── docs/readme/                  # gambar untuk README ini
