@@ -412,7 +412,7 @@ Setiap anggota memegang satu modul (PIC) beserta model utamanya, dan modul itu m
 
 ## Pengungkapan Penggunaan AI
 
-Pengembangan EcoPatch, termasuk aplikasi mobile ini, melibatkan beberapa tools berbasis AI untuk implementasi, debugging, perancangan antarmuka, dan dokumentasi. **Seluruh anggota tim menggunakan AI**, tetapi pola dan tingkat pemakaiannya berbeda antaranggota dan antarmodul. Keputusan tentang perilaku fitur, aturan akses, desain, dan perubahan yang dipertahankan tetap dibuat anggota tim.
+_Placeholder._
 
 <details>
 <summary><b>1. Tools AI dan perannya</b></summary>
@@ -421,14 +421,7 @@ Pengembangan EcoPatch, termasuk aplikasi mobile ini, melibatkan beberapa tools b
 
 | Tool | Digunakan oleh | Peran umum |
 | --- | --- | --- |
-| Claude Code | Nurul Fikryati Bena, Salwa Alifia Putri | Asisten coding berbasis agent |
-| Codex | Haikal Rafka A Rahman | Asisten coding berbasis agent |
-| Google Antigravity | Nur Azizah | Asisten coding berbasis agent |
-| Figma Agent | Salwa Alifia Putri, Nur Azizah | Dukungan perancangan antarmuka |
-| DeepSeek | Rheina Uliana | Asisten coding berbasis agent |
-| ChatGPT / GPT | Percakapan proyek | Penjelasan konsep Flutter dan Django, pembacaan kode, debugging, pengujian, dan penyusunan dokumentasi |
-
-Pemetaan tools per anggota berasal dari laporan tim. Rincian tugas per anggota untuk Claude Code, Codex, Antigravity, dan Figma Agent belum terdokumentasi.
+|  |  |  |
 
 </details>
 
@@ -437,16 +430,9 @@ Pemetaan tools per anggota berasal dari laporan tim. Rincian tugas per anggota u
 
 <br>
 
-Tabel ini memetakan aktivitas yang tercatat. Bukan berarti seluruh kode pada area tersebut ditulis AI.
-
 | Area | Contoh aktivitas |
 | --- | --- |
-| Kerangka aplikasi Flutter | Struktur folder per modul, shell navigasi bottom tab dan drawer, serta `IndexedStack` agar posisi daftar tidak hilang |
-| Tema dan tampilan | Token warna di `lib/theme/app_colors.dart` yang diselaraskan dengan CSS web, tema Material 3, dan komponen bersama seperti drawer |
-| Halaman per modul | Placeholder tiap modul beserta nama PIC, kartu ringkasan, dan susunan yang akan diisi data dari API |
-| Integrasi API | Rancangan pemanggilan Django REST Framework, pemetaan JSON ke model Dart, penanganan memuat, galat, dan tarik-untuk-menyegarkan |
-| Testing & debugging | Menelusuri error `flutter analyze` dan `flutter test`, memeriksa versi Flutter, serta membaca perubahan `pubspec.lock` dan file generated |
-| Git dan dokumentasi | Branch, commit, dan penyesuaian README mobile agar konsisten dengan README web |
+|  |  |
 
 </details>
 
@@ -457,12 +443,7 @@ Tabel ini memetakan aktivitas yang tercatat. Bukan berarti seluruh kode pada are
 
 | Strategi | Contoh |
 | --- | --- |
-| Konteks proyek lebih dulu | Agent diminta membaca README, struktur `lib/`, dan repo web sebelum mengubah satu modul, supaya penamaan dan alur data tetap sama |
-| Satu modul, satu folder | Pekerjaan dibatasi pada folder modul yang ditugaskan, dan file bersama seperti `main.dart` atau `app_colors.dart` hanya disentuh kalau memang perlu |
-| Screenshot dan referensi visual | Tampilan web dipakai sebagai acuan warna, jarak, dan bentuk kartu, lalu selisihnya ditunjukkan lewat screenshot |
-| Rencana dulu, baru eksekusi | Untuk perubahan besar, agent menyusun rencana yang disetujui anggota sebelum mengubah kode |
-| Batasan ruang lingkup | Menetapkan branch kerja, file yang boleh diubah, dan format pesan commit. Commit dan push hanya dilakukan setelah diminta |
-| Iterasi dari hasil pengujian | Melaporkan gejala yang terlihat di aplikasi, lalu meminta revisi terarah setelah dicek ulang di emulator atau perangkat |
+|  |  |
 
 </details>
 
@@ -471,13 +452,7 @@ Tabel ini memetakan aktivitas yang tercatat. Bukan berarti seluruh kode pada are
 
 <br>
 
-- **Pemeriksaan di aplikasi:** anggota menjalankan aplikasi, membandingkan tampilan dengan referensi web dan Figma, lalu melaporkan perbedaannya.
-- **Koreksi lanjutan:** jarak, ukuran ikon, dan susunan kartu diperbaiki bertahap setelah dilihat langsung di layar ponsel.
-- **Pencocokan dengan backend:** nama field, tipe data, dan aturan akses dicocokkan dengan model serta endpoint di repo web, supaya aplikasi tidak memakai data yang tidak ada.
-- **Pengujian otomatis:** `flutter analyze` dan `flutter test` dijalankan sebelum perubahan dianggap selesai.
-- **Review sebelum merge:** perubahan masuk lewat pull request dan diperiksa anggota lain, termasuk tampilan di ponsel.
-
-Test otomatis tidak menggantikan pemeriksaan visual. Riwayat commit juga tidak membuktikan apakah suatu baris ditulis manusia atau AI, karena sebagian commit dijalankan agent atas instruksi anggota.
+_Placeholder._
 
 </details>
 
@@ -486,17 +461,9 @@ Test otomatis tidak menggantikan pemeriksaan visual. Riwayat commit juga tidak m
 
 <br>
 
-Ini bagian yang paling penting: AI tidak selalu benar, dan perbaikannya dikerjakan atau diverifikasi manusia.
-
 | Temuan | Cara diketahui dan tindakan korektif |
 | --- | --- |
-| Repo mobile dan web punya versi Flutter dan Django yang berbeda, sehingga `flutter pub get` mengubah `pubspec.lock` dan file `generated_plugin_registrant` di beberapa platform | Terlihat dari `git status` setelah `pub get`. Perubahan file generated dipisahkan dari perubahan fitur dan tidak di-commit sembarangan |
-| Klaim "sudah selesai" pada bagian yang masih placeholder | Diperiksa dengan membuka aplikasi. README diberi bagian status supaya dokumen tidak menjanjikan fitur yang belum ada |
-| Tampilan mobile mudah menyimpang dari web karena satuan CSS tidak sama dengan satuan Flutter | Dibandingkan dengan screenshot web, lalu token warna dan jarak disamakan di `app_colors.dart` dan widget terkait |
-| Perubahan menyentuh file bersama di luar modul | Ditemukan saat membaca diff, lalu dikembalikan. File bersama hanya diubah setelah disepakati |
-| Agent menyatakan working tree "bersih" padahal ada perubahan yang belum di-commit | Terlihat dari keluaran `git status` pada langkah berikutnya. Pelajarannya: status Git dibaca dari keluaran perintah, bukan dari ingatan agent |
-
-Pelajaran utamanya: instruksi eksplisit tetap perlu diperiksa pada hasil aktual, kecocokan visual membutuhkan penilaian manusia, dan klaim agent tentang keadaan repo atau perangkat harus dicek ulang.
+|  |  |
 
 </details>
 
@@ -505,7 +472,7 @@ Pelajaran utamanya: instruksi eksplisit tetap perlu diperiksa pada hasil aktual,
 
 <br>
 
-> AI digunakan sebagai alat bantu untuk eksplorasi, implementasi, debugging, dan dokumentasi. Kesesuaian dengan requirement, keputusan desain dan arsitektur, pemeriksaan hasil, serta tanggung jawab atas kualitas akhir tetap berada pada anggota tim.
+_Placeholder._
 
 </details>
 
