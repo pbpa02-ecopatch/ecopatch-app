@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'app_colors.dart';
 
@@ -32,7 +31,8 @@ class AppTheme {
     Color color = AppColors.ink,
     double height = 1.15,
   }) {
-    return GoogleFonts.baloo2(
+    return TextStyle(
+      fontFamily: 'Baloo2',
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
@@ -46,7 +46,8 @@ class AppTheme {
     Color color = AppColors.ink,
     double height = 1.55,
   }) {
-    return GoogleFonts.plusJakartaSans(
+    return TextStyle(
+      fontFamily: 'PlusJakartaSans',
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
@@ -109,16 +110,6 @@ class AppTheme {
         centerTitle: false,
         titleTextStyle: heading(fontSize: 22),
         iconTheme: const IconThemeData(color: AppColors.brand600, size: 24),
-      ),
-      cardTheme: CardTheme(
-        color: AppColors.surface200,
-        surfaceTintColor: Colors.transparent,
-        elevation: 0,
-        margin: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(radiusCard),
-          side: const BorderSide(color: AppColors.border),
-        ),
       ),
       dividerTheme: const DividerThemeData(color: AppColors.sideLine, thickness: 1, space: 1),
       navigationBarTheme: NavigationBarThemeData(
